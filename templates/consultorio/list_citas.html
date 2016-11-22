@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{%block content%}
+		{% if object_list %}
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<td>Fecha programada</td>
+					<td>Hora programada</td>
+					<td>Profesional</td>
+					<td>Observación</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for cita in object_list %}
+					<tr>
+						<td>{{cita.fecha_programada}}</td>
+						<td>{{cita.hora_programada}}</td>
+						<td>{{cita.profesional}}</td>
+						<td>{{cita.observacion}}</td>
+						<td>
+							<a class="btn btn-primary" href="{% url 'consultorio:edt_c' cita.id %}">Editar</a>
+							<a class="btn btn-danger" href="{% url 'consultorio:del_c' cita.id %}">Eliminar</a>
+						</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+			<h1>No existen registros</h1>
+		{% endif %}
+{%endblock%}
+
+{%block footer%}
+{%endblock%}
